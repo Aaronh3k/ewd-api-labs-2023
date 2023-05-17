@@ -8,6 +8,7 @@
     "start": "nodemon --exec babel-node index.js"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
   }
 }
