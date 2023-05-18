@@ -19,10 +19,22 @@ export default class extends AccountRepository {
     async persist(accountEntity) {
         const {firstName, lastName, email, password} = accountEntity;
         const result = new this.model({firstName, lastName, email, password});
-        await result.save();
+        
+        try {
+            await result.save();
+        } catch (error) {
+            console.error('Error saving account:', error);
+            throw error; // You might want to throw a custom error or handle this differently
+        }
+    
+        if (!result.id) {
+            throw new Error('Account was not saved correctly, result.id is undefined');
+        }
+        
         accountEntity.id=result.id;
         return accountEntity;
     }
+        
 
     async merge(accountEntity) {
         const {id, firstName, lastName, email, password, favourites } = accountEntity;
