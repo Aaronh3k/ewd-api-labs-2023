@@ -4,12 +4,14 @@ import AccountSchema from '../accounts/validators';
 //import Authenticator from '../accounts/security/simple';
 import AccountValidators from '../accounts/security/Authenticator'
 import Authenticator from '../accounts/security/BCryptAuthenticator';
+import TokenManager from './../accounts/security/JWTToken';
 
 const buildDependencies = () => {
   const dependencies = {
     accountSchema: AccountSchema,
     validators: AccountValidators,
-    authenticator: new Authenticator()
+    authenticator: new Authenticator(),
+    tokenManager: new TokenManager()
   };
 
   if (process.env.DATABASE_DIALECT === "in-memory") {
