@@ -53,6 +53,27 @@ export default (dependencies) => {
             next(new Error(`Invalid Data ${err.message}`));
         }
     };
+    const verify = async (request, response, next) => {
+        try { 
+        // Input
+        const authHeader = request.headers.authorization;
+    
+        if (!authHeader) {
+            // Respond with an error message or throw an error
+            throw new Error('Authorization header is missing');
+        }
+    
+        // Treatment
+        const accessToken = authHeader.split(" ")[1];
+        const user = await accountService.verifyToken(accessToken, dependencies);
+    
+        //output
+        next();
+        }catch(err){
+            //Token Verification Failed
+            next(new Error(`Verification Failed ${err.message}`));
+        }
+    };
 
 
 
@@ -62,6 +83,7 @@ export default (dependencies) => {
         listAccounts,
         authenticateAccount,
         addFavourite,
-        getFavourites
+        getFavourites,
+        verify
     };
 };

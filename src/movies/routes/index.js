@@ -1,16 +1,18 @@
 import express from 'express';
 import MoviesController from '../controllers';
+import AccountsController from '../../accounts/controllers';
 
 const createMoviesRouter = (dependencies) => {
     const router = express.Router();
     // load controllers with dependencies
     const moviesController = MoviesController(dependencies);
+    const accountsController = AccountsController(dependencies);
 
     router.route('/:id')
-        .get(moviesController.getMovie);
+        .get(accountsController.verify, moviesController.getMovie);
 
     router.route('/')
-        .get(moviesController.find);
+        .get(accountsController.verify, moviesController.find);
 
     return router;
 };
