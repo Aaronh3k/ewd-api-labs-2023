@@ -1,7 +1,8 @@
 import Account from '../entities/Account';
 
 export default {
-  registerAccount: async  (firstName, lastName, email, password, {accountsRepository}) => {
+  registerAccount: async  (firstName, lastName, email, password, {accountsRepository, authenticator}) => {
+    password = await authenticator.encrypt(password)
     const account = new Account(undefined, firstName, lastName, email, password);
     return accountsRepository.persist(account);
   },
