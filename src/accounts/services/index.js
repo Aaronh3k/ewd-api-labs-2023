@@ -21,8 +21,8 @@ export default {
     if (!result) {
       throw new Error('Bad credentials');
     }
-    const token = tokenManager.generate({ email: account.email });
-    return token;
+    const token = tokenManager.generate({ id: account.id, email: account.email });
+    return { token, account };
   },
   getFavourites: async (accountId, { accountsRepository }) => {
     const account = await accountsRepository.get(accountId);

@@ -27,8 +27,8 @@ export default (dependencies) => {
     const authenticateAccount = async (request, response, next) => {
         try {
             const { email, password } = request.body;
-            const token = await accountService.authenticate(email, password, dependencies);
-            response.status(200).json({ token: `BEARER ${token}` });
+            const { token, account } = await accountService.authenticate(email, password, dependencies);
+            response.status(200).json({ token: `BEARER ${token}`, user_id: account.id });
         } catch (error) {
             console.error(error);
             response.status(401).json({ message: 'Unauthorised' });

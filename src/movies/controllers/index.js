@@ -13,10 +13,10 @@ export default (dependencies) => {
         response.status(200).json(movies);
     };
     const searchMovies = async (request, response, next) => {
-        const { searchQuery, selectedGenreId, filter, page } = request.query;
-        const movies = await moviesService.searchMovies({ searchQuery, selectedGenreId, filter, page }, dependencies);
+        const { query, page = 1 } = request.query;
+        const movies = await moviesService.searchMovies(query, page, dependencies);
         return response.status(200).json(movies);
-      };
+    };
     const getMovieImages = async (request, response, next) => {
         const movieId = request.params.id;
         const images = await moviesService.getMovieImages(movieId, dependencies);

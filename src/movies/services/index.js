@@ -13,21 +13,12 @@ export default {
     );
     return response.data;
   },
-  searchMovies: async ({ searchQuery, selectedGenreId, filter, page }) => {
-    let endpoint = 'https://api.themoviedb.org/3/discover/movie';
-    if (searchQuery) {
-      endpoint = `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&page=${page}`;
-    } else if (selectedGenreId) {
-      endpoint += `?with_genres=${selectedGenreId}&sort_by=${filter}&page=${page}`;
-    } else {
-      endpoint += `?filter=${filter}&page=${page}`;
-    }
-    
+  searchMovies: async (query, page = 1) => {
     const response = await axios.get(
-      `${endpoint}&api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false`
+      `https://api.themoviedb.org/3/search/movie?query=${query}&page=${page}&api_key=${process.env.TMDB_KEY}`
     );
     return response.data;
-  },
+  },  
   getMovieImages: async (movieId) => {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${process.env.TMDB_KEY}`
