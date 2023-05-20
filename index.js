@@ -8,6 +8,7 @@ import errorHandler from './src/utils/ErrorHandler';
 import cors from 'cors';
 import createTVShowsRouter from './src/tvshows/routes';
 import createPersonsRouter from './src/persons/routes';
+import createTrendingRouter from './src/trending/routes';
 
 dotenv.config();
 
@@ -33,6 +34,8 @@ app.use('/api/accounts', createAccountsRouter(dependencies));
 app.use('/api/tv', createTVShowsRouter(dependencies));
 
 app.use('/api/person', createPersonsRouter(dependencies));
+
+app.use('/api/trending', createTrendingRouter(dependencies));
 
 app.use(errorHandler);
 
