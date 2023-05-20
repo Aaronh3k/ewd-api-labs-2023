@@ -6,6 +6,7 @@ import createMoviesRouter from './src/movies/routes';
 import db from './src/config/db';
 import errorHandler from './src/utils/ErrorHandler';
 import cors from 'cors';
+import createTVShowsRouter from './src/tvshows/routes';
 
 dotenv.config();
 
@@ -27,6 +28,8 @@ const dependencies = buildDependencies();
 app.use('/api/movies', createMoviesRouter(dependencies));
 
 app.use('/api/accounts', createAccountsRouter(dependencies));
+
+app.use('/api/tv', createTVShowsRouter(dependencies));
 
 app.use(errorHandler);
 
