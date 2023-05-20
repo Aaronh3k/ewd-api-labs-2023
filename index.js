@@ -7,6 +7,7 @@ import db from './src/config/db';
 import errorHandler from './src/utils/ErrorHandler';
 import cors from 'cors';
 import createTVShowsRouter from './src/tvshows/routes';
+import createPersonsRouter from './src/persons/routes';
 
 dotenv.config();
 
@@ -30,6 +31,8 @@ app.use('/api/movies', createMoviesRouter(dependencies));
 app.use('/api/accounts', createAccountsRouter(dependencies));
 
 app.use('/api/tv', createTVShowsRouter(dependencies));
+
+app.use('/api/person', createPersonsRouter(dependencies));
 
 app.use(errorHandler);
 
