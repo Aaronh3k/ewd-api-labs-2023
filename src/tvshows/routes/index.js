@@ -15,6 +15,18 @@ const createTVShowsRouter = (dependencies) => {
     
     router.route('/search')
         .get(accountsController.verify, tvShowsController.searchTVShows);
+    
+    router.route('/:id/credits')
+        .get(accountsController.verify, tvShowsController.getTVShowCredits);
+      
+    router.route('/:id/details')
+        .get(accountsController.verify, tvShowsController.getTVShowDetails);
+      
+    router.route('/:id/reviews')
+        .get(accountsController.verify, tvShowsController.getTVShowReviews);
+      
+    router.route('/:id/images')
+        .get(accountsController.verify, tvShowsController.getTVShowImages);
 
     return router;
 };
