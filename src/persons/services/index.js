@@ -20,4 +20,23 @@ export default {
         );
         return response.data;
     },
+    getPersonMovieCredits: async (personId) => {
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/person/${personId}/movie_credits?api_key=${process.env.TMDB_KEY}`
+        );
+        return response.data.cast;
+    },
+    
+    getPersonTVCredits: async (personId) => {
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/person/${personId}/tv_credits?api_key=${process.env.TMDB_KEY}`
+        );
+        return response.data.cast;
+    },
+    getPersonDetails: async (personId) => {
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/person/${personId}?api_key=${process.env.TMDB_KEY}`
+        );
+        return response.data;
+      },
 };

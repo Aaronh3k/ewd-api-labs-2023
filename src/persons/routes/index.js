@@ -16,6 +16,15 @@ const createPersonsRouter = (dependencies) => {
 
     router.route('/search')
         .get(accountsController.verify, personsController.searchPersons);
+    
+    router.route('/:id/movie_credits')
+        .get(accountsController.verify, personsController.getPersonMovieCredits);
+      
+    router.route('/:id/tv_credits')
+        .get(accountsController.verify, personsController.getPersonTVCredits);
+      
+    router.route('/:id/details')
+        .get(accountsController.verify, personsController.getPersonDetails);
 
     return router;
 };

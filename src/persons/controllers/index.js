@@ -17,10 +17,29 @@ export default (dependencies) => {
         const persons = await personsService.searchPersons({ searchQuery, selectedGenreId, filter, page }, dependencies);
         return response.status(200).json(persons);
     };
+    const getPersonMovieCredits = async (request, response, next) => {
+        const personId = request.params.id;
+        const credits = await personsService.getPersonMovieCredits(personId, dependencies);
+        response.status(200).json(credits);
+    };
+    const getPersonTVCredits = async (request, response, next) => {
+        const personId = request.params.id;
+        const credits = await personsService.getPersonTVCredits(personId, dependencies);
+        response.status(200).json(credits);
+    };
+    
+    const getPersonDetails = async (request, response, next) => {
+        const personId = request.params.id;
+        const details = await personsService.getPersonDetails(personId, dependencies);
+        response.status(200).json(details);
+    };
 
     return {
         getPerson,
         find,
-        searchPersons
+        searchPersons,
+        getPersonMovieCredits,
+        getPersonTVCredits,
+        getPersonDetails
     };
 };
