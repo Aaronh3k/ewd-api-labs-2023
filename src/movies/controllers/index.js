@@ -18,9 +18,18 @@ export default (dependencies) => {
         //output
         response.status(200).json(movies);
     };
+    const searchMovies = async (request, response, next) => {
+        //input
+        const { searchQuery, selectedGenreId, filter, page } = request.query;
+        // Treatment
+        const movies = await moviesService.searchMovies({ searchQuery, selectedGenreId, filter, page }, dependencies);
+        //output
+        return response.status(200).json(movies);
+      };
 
     return {
         getMovie,
-        find
+        find,
+        searchMovies
     };
 };

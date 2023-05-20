@@ -5,12 +5,16 @@ import buildDependencies from "./src/config/dependencies";
 import createMoviesRouter from './src/movies/routes';
 import db from './src/config/db';
 import errorHandler from './src/utils/ErrorHandler';
+import cors from 'cors';
 
 dotenv.config();
 
 db.init();
 
 const app = express();
+
+// Enable CORS
+app.use(cors());
 
 // Middleware for parsing the body of the request.
 app.use(express.json());
