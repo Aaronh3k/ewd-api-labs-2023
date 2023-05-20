@@ -53,6 +53,16 @@ export default (dependencies) => {
             next(new Error(`Invalid Data ${err.message}`));
         }
     };
+    const removeFavourite = async (request, response, next) => {
+        try {
+          const { movieId } = request.body;
+          const id = request.params.id;
+          const account = await accountService.removeFavourite(id, movieId, dependencies);
+          response.status(200).json(account);
+        } catch (err) {
+          next(new Error(`Invalid Data ${err.message}`));
+        }
+      };      
     const verify = async (request, response, next) => {
         try { 
         // Input
@@ -84,6 +94,7 @@ export default (dependencies) => {
         authenticateAccount,
         addFavourite,
         getFavourites,
+        removeFavourite,
         verify
     };
 };

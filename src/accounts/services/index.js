@@ -33,6 +33,15 @@ export default {
     account.favourites.push(movieId);
     return await accountsRepository.merge(account);
   },
+  removeFavourite: async (accountId, movieId, { accountsRepository }) => {
+    const account = await accountsRepository.get(accountId);
+    const favIndex = account.favourites.indexOf(movieId);
+    if (favIndex !== -1) {
+      account.favourites.splice(favIndex, 1);
+      return await accountsRepository.merge(account);
+    }
+    throw new Error('Movie not found in favourites');
+  },  
   verifyToken:   async (token,{accountsRepository, tokenManager}) => {
     const decoded = await tokenManager.decode(token);
     const user = await accountsRepository.getByEmail(decoded.email);

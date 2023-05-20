@@ -28,7 +28,10 @@ const createRouter = (dependencies) => {
     
     router.route('/:id/favourites')
         .get(accountsController.verify, accountsController.getFavourites);
-
+    
+    router.route('/:id/favourites')
+        .delete(accountsController.verify, accountsController.removeFavourite);
+      
     return router;
 };
 export default createRouter;
