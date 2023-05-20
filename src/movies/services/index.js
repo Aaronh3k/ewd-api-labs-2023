@@ -28,4 +28,22 @@ export default {
     );
     return response.data;
   },
+  getMovieImages: async (movieId) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${process.env.TMDB_KEY}`
+    );
+    return response.data;
+  },
+  getMovieReviews: async (movieId) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${process.env.TMDB_KEY}`
+    );
+    return response.data;
+  },
+  getMovieCredits: async (movieId) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${process.env.TMDB_KEY}`
+    );
+    return response.data;
+  },
 };

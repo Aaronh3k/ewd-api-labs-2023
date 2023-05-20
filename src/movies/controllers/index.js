@@ -3,33 +3,44 @@ import moviesService from "./../services";
 export default (dependencies) => {
 
     const getMovie = async (request, response, next) => {
-        //input
         const movieId = request.params.id;
-        // Treatment
         const movie = await moviesService.getMovie(movieId, dependencies);
-        //output
         response.status(200).json(movie);
     };
     const find = async (request, response, next) => {
-        //input
         const query = request.query;
-        // Treatment
         const movies = await moviesService.find(query, dependencies);
-        //output
         response.status(200).json(movies);
     };
     const searchMovies = async (request, response, next) => {
-        //input
         const { searchQuery, selectedGenreId, filter, page } = request.query;
-        // Treatment
         const movies = await moviesService.searchMovies({ searchQuery, selectedGenreId, filter, page }, dependencies);
-        //output
         return response.status(200).json(movies);
       };
+    const getMovieImages = async (request, response, next) => {
+        const movieId = request.params.id;
+        const images = await moviesService.getMovieImages(movieId, dependencies);
+        response.status(200).json(images);
+    };
+
+    const getMovieReviews = async (request, response, next) => {
+        const movieId = request.params.id;
+        const reviews = await moviesService.getMovieReviews(movieId, dependencies);
+        response.status(200).json(reviews);
+    };
+
+    const getMovieCredits = async (request, response, next) => {
+        const movieId = request.params.id;
+        const credits = await moviesService.getMovieCredits(movieId, dependencies);
+        response.status(200).json(credits);
+    };
 
     return {
         getMovie,
         find,
-        searchMovies
+        searchMovies,
+        getMovieImages,
+        getMovieReviews,
+        getMovieCredits
     };
 };

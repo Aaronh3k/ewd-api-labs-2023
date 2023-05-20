@@ -16,6 +16,15 @@ const createMoviesRouter = (dependencies) => {
     
     router.route('/search')
         .get(accountsController.verify, moviesController.searchMovies);
+    
+    router.route('/:id/images')
+        .get(accountsController.verify, moviesController.getMovieImages);
+
+    router.route('/:id/reviews')
+        .get(accountsController.verify, moviesController.getMovieReviews);
+        
+    router.route('/:id/credits')
+        .get(accountsController.verify, moviesController.getMovieCredits);
 
     return router;
 };
