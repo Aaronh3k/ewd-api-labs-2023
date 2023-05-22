@@ -8,8 +8,28 @@ export default (dependencies) => {
         response.status(200).json(movie);
     };
     const find = async (request, response, next) => {
-        const query = request.query;
-        const movies = await moviesService.find(query, dependencies);
+        const { query, page = 1 } = request.query;
+        const movies = await moviesService.find(query, page, dependencies);
+        response.status(200).json(movies);
+    };
+    const getPopular = async (request, response, next) => {
+        const { page = 1 } = request.query;
+        const movies = await moviesService.getPopular(page, dependencies);
+        response.status(200).json(movies);
+    };
+    const getNowPlaying = async (request, response, next) => {
+        const { page = 1 } = request.query;
+        const movies = await moviesService.getNowPlaying(page, dependencies);
+        response.status(200).json(movies);
+    };
+    const getTopRated = async (request, response, next) => {
+        const { page = 1 } = request.query;
+        const movies = await moviesService.getTopRated(page, dependencies);
+        response.status(200).json(movies);
+    };
+    const getUpComing = async (request, response, next) => {
+        const { page = 1 } = request.query;
+        const movies = await moviesService.getUpComing(page, dependencies);
         response.status(200).json(movies);
     };
     const searchMovies = async (request, response, next) => {
@@ -41,6 +61,10 @@ export default (dependencies) => {
         searchMovies,
         getMovieImages,
         getMovieReviews,
-        getMovieCredits
+        getMovieCredits,
+        getPopular,
+        getNowPlaying,
+        getUpComing,
+        getTopRated
     };
 };

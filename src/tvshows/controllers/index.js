@@ -11,9 +11,29 @@ export default (dependencies) => {
         const tvShows = await tvShowsService.find(query, dependencies);
         response.status(200).json(tvShows);
     };
+    const getPopular = async (request, response, next) => {
+      const { page = 1 } = request.query;
+      const tvShow = await tvShowsService.getPopular(page, dependencies);
+      response.status(200).json(tvShow);
+  };
+    const getAiringToday = async (request, response, next) => {
+      const { page = 1 } = request.query;
+      const tvShow = await tvShowsService.getAiringToday(page, dependencies);
+      response.status(200).json(tvShow);
+  };
+    const getOnTheAir = async (request, response, next) => {
+      const { page = 1 } = request.query;
+      const tvShow = await tvShowsService.getOnTheAir(page, dependencies);
+      response.status(200).json(tvShow);
+  };
+    const getTopRated = async (request, response, next) => {
+      const { page = 1 } = request.query;
+      const tvShow = await tvShowsService.getTopRated(page, dependencies);
+      response.status(200).json(tvShow);
+  };
     const searchTVShows = async (request, response, next) => {
-        const { searchQuery, selectedGenreId, filter, page } = request.query;
-        const tvShows = await tvShowsService.searchTVShows({ searchQuery, selectedGenreId, filter, page }, dependencies);
+      const { query, page = 1 } = request.query;
+        const tvShows = await tvShowsService.searchTVShows(query, page, dependencies);
         return response.status(200).json(tvShows);
     };
     const getTVShowCredits = async (request, response, next) => {
@@ -44,6 +64,10 @@ export default (dependencies) => {
         getTVShowCredits,
         getTVShowDetails,
         getTVShowReviews,
-        getTVShowImages
+        getTVShowImages,
+        getAiringToday,
+        getOnTheAir,
+        getPopular,
+        getTopRated
     };
 };

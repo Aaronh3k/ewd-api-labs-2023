@@ -7,9 +7,33 @@ export default {
     );
     return response.data;
   },
-  find: async (query) => {
+  find: async (query, page) => {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false&${query}`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_KEY}&page=${page}&language=en-US&include_adult=false&include_video=false&${query}`
+    );
+    return response.data;
+  },
+  getPopular: async (page) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_KEY}&page=${page}&language=en-US&include_adult=false&include_video=false&`
+    );
+    return response.data;
+  },
+  getUpComing: async (page) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_KEY}&page=${page}&language=en-US&include_adult=false&include_video=false&`
+    );
+    return response.data;
+  },
+  getTopRated: async (page) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_KEY}&page=${page}&language=en-US&include_adult=false&include_video=false&`
+    );
+    return response.data;
+  },
+  getNowPlaying: async (page) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.TMDB_KEY}&page=${page}&language=en-US&include_adult=false&include_video=false&`
     );
     return response.data;
   },

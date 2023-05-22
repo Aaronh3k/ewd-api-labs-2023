@@ -13,8 +13,8 @@ export default (dependencies) => {
         response.status(200).json(persons);
     };
     const searchPersons = async (request, response, next) => {
-        const { searchQuery, selectedGenreId, filter, page } = request.query;
-        const persons = await personsService.searchPersons({ searchQuery, selectedGenreId, filter, page }, dependencies);
+        const { query, page = 1 } = request.query;
+        const persons = await personsService.searchPersons(query, page, dependencies);
         return response.status(200).json(persons);
     };
     const getPersonMovieCredits = async (request, response, next) => {

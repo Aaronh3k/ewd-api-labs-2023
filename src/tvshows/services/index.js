@@ -13,18 +13,33 @@ export default {
     );
     return response.data;
   },
-  searchTVShows: async ({ searchQuery, selectedGenreId, filter, page }) => {
-    let endpoint = 'https://api.themoviedb.org/3/discover/tv';
-    if (searchQuery) {
-      endpoint = `https://api.themoviedb.org/3/search/tv?query=${searchQuery}&page=${page}`;
-    } else if (selectedGenreId) {
-      endpoint += `?with_genres=${selectedGenreId}&sort_by=${filter}&page=${page}`;
-    } else {
-      endpoint += `?sort_by=${filter}&page=${page}`;
-    }
-    
+  getPopular: async (page) => {
     const response = await axios.get(
-      `${endpoint}&api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false`
+      `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.TMDB_KEY}&page=${page}&language=en-US&include_adult=false&include_video=false&`
+    );
+    return response.data;
+  },
+  getTopRated: async (page) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.TMDB_KEY}&page=${page}&language=en-US&include_adult=false&include_video=false&`
+    );
+    return response.data;
+  },
+  getAiringToday: async (page) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.TMDB_KEY}&page=${page}&language=en-US&include_adult=false&include_video=false&`
+    );
+    return response.data;
+  },
+  getOnTheAir: async (page) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.TMDB_KEY}&page=${page}&language=en-US&include_adult=false&include_video=false&`
+    );
+    return response.data;
+  },
+  searchTVShows: async (query, page = 1) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/search/tv?query=${query}&page=${page}&api_key=${process.env.TMDB_KEY}`
     );
     return response.data;
   },

@@ -8,14 +8,14 @@ const createPersonsRouter = (dependencies) => {
     const personsController = PersonsController(dependencies);
     const accountsController = AccountsController(dependencies);
 
-    router.route('/:id')
-        .get(accountsController.verify, personsController.getPerson);
-
     router.route('/')
         .get(accountsController.verify, personsController.find);
 
     router.route('/search')
         .get(accountsController.verify, personsController.searchPersons);
+    
+    router.route('/:id')
+        .get(accountsController.verify, personsController.getPerson);
     
     router.route('/:id/movie_credits')
         .get(accountsController.verify, personsController.getPersonMovieCredits);

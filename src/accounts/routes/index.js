@@ -8,13 +8,10 @@ const createRouter = (dependencies) => {
     const accountsController = AccountsController(dependencies);
     const validationController = ValidationController(dependencies);
     
-    // router.route('/*')
-    //     .all(accountsController.verify); 
-
     router.route('/')
         .post(validationController.validateAccount,accountsController.createAccount);
 
-        router.route('/')
+    router.route('/')
         .get(accountsController.verify, accountsController.listAccounts);
 
     router.route('/:id')

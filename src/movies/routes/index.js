@@ -8,14 +8,26 @@ const createMoviesRouter = (dependencies) => {
     const moviesController = MoviesController(dependencies);
     const accountsController = AccountsController(dependencies);
 
-    router.route('/:id')
-        .get(accountsController.verify, moviesController.getMovie);
-
     router.route('/')
-        .get(accountsController.verify, moviesController.find, moviesController.searchMovies);
+        .get(accountsController.verify, moviesController.find);
+    
+    router.route('/popular')
+        .get(accountsController.verify, moviesController.getPopular);
+    
+    router.route('/now_playing')
+        .get(accountsController.verify, moviesController.getNowPlaying);
+    
+    router.route('/top_rated')
+        .get(accountsController.verify, moviesController.getTopRated);
+    
+    router.route('/upcoming')
+        .get(accountsController.verify, moviesController.getUpComing);
     
     router.route('/search')
         .get(accountsController.verify, moviesController.searchMovies);
+    
+    router.route('/:id')
+        .get(accountsController.verify, moviesController.getMovie);
     
     router.route('/:id/images')
         .get(accountsController.verify, moviesController.getMovieImages);

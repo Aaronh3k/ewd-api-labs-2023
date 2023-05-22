@@ -13,10 +13,8 @@ export default {
         );
         return response.data;
     },
-    searchPersons: async ({ searchQuery, page }) => {
-        let endpoint = `https://api.themoviedb.org/3/search/person?query=${searchQuery}&page=${page}`;
-        const response = await axios.get(
-            `${endpoint}&api_key=${process.env.TMDB_KEY}`
+    searchPersons: async (query, page = 1) => {
+        const response = await axios.get(`https://api.themoviedb.org/3/search/person?query=${query}&page=${page}&api_key=${process.env.TMDB_KEY}`
         );
         return response.data;
     },
