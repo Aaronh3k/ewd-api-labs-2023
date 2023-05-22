@@ -9,6 +9,10 @@ export default {
   getAccount: (accountId, {accountsRepository}) => {
     return accountsRepository.get(accountId);
   },
+  updateAccount: async (accountId, firstName, lastName, username, websiteUrl, { accountsRepository }) => {
+    const account = new Account(accountId, firstName, lastName, undefined, undefined, username, websiteUrl);
+    return accountsRepository.merge(account);
+  },
   find: ({accountsRepository})=>{
     return accountsRepository.find();
   },
