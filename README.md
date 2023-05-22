@@ -46,7 +46,7 @@ HOST=localhost
 TMDB_KEY=YOUR_TMDB_API_KEY
 DATABASE_DIALECT=mongo
 DATABASE_URL=mongodb://127.0.0.1:27017/movies_db
-JWT_SECRET_KEY=YOUR_JWT_SECRET_KEY
+JWT_SECRET_KEY=YOUR_JWT_SECRET_KEY```
 
 ## Security and Authentication
 
@@ -72,7 +72,7 @@ Below is an example of how to call the API from a React application:
 ```javascript
 export const getMovies = (page) => fetcher(`/api/movies/popular?page=${page}`)
     .then((res) => res.json())
-    .then((json) => json);
+    .then((json) => json);```
 
 ## Logging
 
