@@ -1,1 +1,1 @@
-# ewd-api-labs-2023
+# REST API for ReactFlix-Movie Application (TMDB Movies Client)
