@@ -1,4 +1,5 @@
 import accountService from "../services";
+import logger from '../../utils/logger';
 
 export default (dependencies) => {
     const createAccount = async (request, response, next) => {
@@ -27,7 +28,7 @@ export default (dependencies) => {
             const { token, account } = await accountService.authenticate(email, password, dependencies);
             response.status(200).json({ token: `BEARER ${token}`, user_id: account.id, email: account.email });
         } catch (error) {
-            console.error(error);
+            logger.error(error);
             response.status(401).json({ message: 'Unauthorised' });
         }
     };
@@ -38,6 +39,7 @@ export default (dependencies) => {
             const account = await accountService.addFavourite(id, movieId, dependencies);
             response.status(200).json(account);
         } catch (err) {
+            logger.error(`Invalid Data ${err.message}`);
             next(new Error(`Invalid Data ${err.message}`));
         }
     };
@@ -47,6 +49,7 @@ export default (dependencies) => {
             const favourites = await accountService.getFavourites(id, dependencies);
             response.status(200).json(favourites);
         } catch (err) {
+            logger.error(`Invalid Data ${err.message}`);
             next(new Error(`Invalid Data ${err.message}`));
         }
     };
@@ -57,6 +60,7 @@ export default (dependencies) => {
             const account = await accountService.removeFavourite(id, movieId, dependencies);
             response.status(200).json(account);
         } catch (err) {
+            logger.error(`Invalid Data ${err.message}`);
             next(new Error(`Invalid Data ${err.message}`));
         }
     };

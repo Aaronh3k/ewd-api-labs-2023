@@ -9,6 +9,7 @@ import cors from 'cors';
 import createTVShowsRouter from './src/tvshows/routes';
 import createPersonsRouter from './src/persons/routes';
 import createTrendingRouter from './src/trending/routes';
+import logger from './src/utils/logger';
 
 dotenv.config();
 
@@ -40,5 +41,5 @@ app.use('/api/trending', createTrendingRouter(dependencies));
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.info(`Server running at ${port}`);
+  logger.info(`Server running at ${port}`);
 });
